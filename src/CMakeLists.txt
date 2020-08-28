@@ -11,3 +11,6 @@ add_executable (speech "speech.cpp" )
 
 find_package(deepspeech REQUIRED)
 target_link_libraries(speech deepspeech)
+
+find_package(portaudio REQUIRED)
+target_link_libraries(speech portaudio)
