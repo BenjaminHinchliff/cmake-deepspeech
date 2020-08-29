@@ -1,6 +1,5 @@
 ﻿#include <memory>
 #include <iostream>
-#include <filesystem>
 #include <limits>
 
 #include "deepspeech.h"
