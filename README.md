@@ -6,7 +6,7 @@ An example of using cmake with Mozilla's deepspeech STT speech recognition of .w
 
 ## Usage
 
-Use one of the precompiled binaries in releases. There are currently no command line options.
+There are no precompiled binaries due to how the project builds, sorry about that.
 
 ## Compilation
 
