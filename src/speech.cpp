@@ -5,8 +5,8 @@
 #include "deepspeech.h"
 #include "audiofile.h"
 
-#include "model.h"
-#include "audio.h"
+#include "model.config.h"
+#include "audio.config.h"
 #include "deepsmartptrs.h"
 
 int main() {

@@ -5,10 +5,10 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
 include(Models)
-configure_file("${CMAKE_CURRENT_LIST_DIR}/model.h.in" "${CMAKE_CURRENT_LIST_DIR}/model.h")
+configure_file("${CMAKE_CURRENT_LIST_DIR}/model.h.in" "${CMAKE_CURRENT_LIST_DIR}/model.config.h")
 
 include(Audio)
-configure_file("${CMAKE_CURRENT_LIST_DIR}/audio.h.in" "${CMAKE_CURRENT_LIST_DIR}/audio.h")
+configure_file("${CMAKE_CURRENT_LIST_DIR}/audio.h.in" "${CMAKE_CURRENT_LIST_DIR}/audio.config.h")
 
 add_executable (speech "speech.cpp" "model.h" "deepsmartptrs.h" "audio.h")
 
