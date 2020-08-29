@@ -1,11 +1,13 @@
 ﻿#include <memory>
 #include <iostream>
 #include <filesystem>
+#include <limits>
 
 #include "deepspeech.h"
 #include "audiofile.h"
 
 #include "model.h"
+#include "audio.h"
 #include "deepsmartptrs.h"
 
 int main() {
@@ -19,7 +21,43 @@ int main() {
     std::cout << "Model created" << '\n';
     UniqueModelState ctx(rawCtx);
 
+    int targetRate = DS_GetModelSampleRate(ctx.get());
+    int targetBitDepth = 16;
 
+    AudioFile<double> speech;
+    speech.load(AUDIO_PATH);
+    if (speech.getSampleRate() != targetRate) {
+        std::cerr << "Input file must have a sample rate of " << targetRate << '\n';
+        return 1;
+    }
+    if (speech.getBitDepth() != targetBitDepth) {
+        std::cerr << "Input file bit depthh must be " << targetBitDepth << '\n';
+        return 1;
+    }
+    if (!speech.isMono()) {
+        std::cerr << "Input file must be mono" << '\n';
+        return 1;
+    }
+
+    std::vector<int16_t> buffer;
+    buffer.reserve(speech.samples[0].size());
+    std::transform(
+        speech.samples[0].cbegin(),
+        speech.samples[0].cend(),
+        std::back_inserter(buffer),
+        [](const double &sample) {
+            return static_cast<int16_t>(
+                sample * std::numeric_limits<int16_t>::max()
+            );
+        }
+    );
+    std::cout << "file loaded" << '\n';
+    
+    std::cout << DS_SpeechToText(
+        ctx.get(),
+        reinterpret_cast<const int16_t *>(buffer.data()),
+        static_cast<uint32_t>(buffer.size())
+    ) << '\n';
 
     return 0;
 }

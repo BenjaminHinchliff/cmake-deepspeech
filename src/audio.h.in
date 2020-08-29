@@ -1,0 +1,6 @@
+#ifndef AUDIO_H_
+#define AUDIO_H_
+
+constexpr char AUDIO_PATH[] = "@AUDIO_PATH@";
+
+#endif // !AUDIO_H_

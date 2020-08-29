@@ -5,7 +5,7 @@ cmake_minimum_required (VERSION 3.8)
 
 project ("speech")
 
-list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/lib" "${CMAKE_CURRENT_LIST_DIR}/models")
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/lib" "${CMAKE_CURRENT_LIST_DIR}/models" "${CMAKE_CURRENT_LIST_DIR}/audio")
 
 # Include sub-projects.
 add_subdirectory ("src")
